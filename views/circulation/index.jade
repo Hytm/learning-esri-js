@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    //meta(http-equiv='refresh', content='60')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    meta(name='viewport', content='initial-scale=1, maximum-scale=1')
+    title POC
+    link(rel='stylesheet', href='http://js.arcgis.com/3.13/esri/css/esri.css')
+    link(rel='stylesheet', href='/stylesheets/poc.css')
+  body
+    #map
+  script.
+    var items;
+    items = !{train};
+  script.
+    var dojoConfig = { parseOnLoad: true };
+  script(src='http://js.arcgis.com/3.13/')
+  script(src='/javascripts/circulation.js')

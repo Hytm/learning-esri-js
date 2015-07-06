@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta Content-Type='text/html; charset=utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POC</title>
+    <link rel="stylesheet" href='http://js.arcgis.com/3.13/esri/css/esri.css'>
+    <link rel="stylesheet" href='/stylesheets/poc.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<div class="container-fluid">
+    <div class="row"><img src="images/SNCF-Reseau_Header.png"  class="img-responsive"></div>
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <p class="title">Gestion des travaux</p>
+            </div>
+        </div>
+    <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table id='test' class="table table-hover table-striped table-condensed table-responsive table-bordered">
+            <thead>
+            <tr>
+                <th class="text-center">ID Fiche EMG</th>
+                <th class="text-center">Libell&eacute;</th>
+                <th class="text-center">Ann&eacute;e de travaux propos&eacute;e</th>
+                <th class="text-center">Carte des travaux</th>
+                <th class="text-center">Carte avec trains</th>
+            </tr>
+            </thead>
+            <!--
+            Pour le poc les données soumises sont issues d'attributs de la TR
+            Dans un contexte métier, on pourrait imaginer une directive AngularJS, basé sur un composant portant les données à soumettre
+            -->
+            <tr id="51" codeLigne="515000", an_pk_debut="235+720" an_pk_fin="494+005" id_typ_urgence="R0"
+                          id_typ_specalite="OT" id_programme="Renouvellement Ouvrages d'Art" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="Op&eacute;. voie cour. lignes 7 &agrave; 9 AV"
+                          id_ty_capacite="" id_typ_fin="" reference_fiche="" symbol="4">
+                <td>51</td>
+                <td>Tranch&#233;e t&#234;te de tunnel de Clermont c&#244;t&#233; Tours et tranch&#233;e tunnel de Clermont c&#244;t&#233; St Nazaire du km</td>
+                <td>01/01/2021
+                </td>
+                <td>
+                    <button id="b51" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src="images/Btn-Petit_CarteTravaux.png"></button>
+                </td>
+                <td>
+                    <button id="t51" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src="images/Btn-Petit_TrainsImpactes.png"></button>
+                </td>
+            </tr>
+            <tr id="74" codeLigne="420000", an_pk_debut="0+430" an_pk_fin="622+408" id_typ_urgence="R0"
+                id_typ_specalite="OA" id_programme="Renouvellement Ouvrages d'Art" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="Renouvellement d'appareils de voie"
+                id_ty_capacite="" id_typ_fin="" reference_fiche="" symbol="1">
+                <td>74</td>
+                <td>Pra de VELOCHEZ au km 281,534</td>
+                <td>01/01/2020
+                </td>
+                <td>
+                    <button id="b74" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src="images/Btn-Petit_CarteTravaux.png"></button>
+                </td>
+                <td>
+                    <button id="t74" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src="images/Btn-Petit_TrainsImpactes.png"></button>
+                </td>
+            </tr>
+            <tr id="206" codeLigne="561000", an_pk_debut="237+390" an_pk_fin="333+261" id_typ_urgence="U1" id_typ_specalite="OT" id_programme="Renouvellement Ouvrages d&#39;Art" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="" id_ty_capacite="" id_typ_fin="" reference_fiche="" symbol="2"><td>206</td><td>Tranch&eacute;e de MONCE EN BELIN</td><td>01/01/2016</td><td><button id = "b206" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src ="images/Btn-Petit_CarteTravaux.png"></button></td><td><button id="t206" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src = "images/Btn-Petit_TrainsImpactes.png"></button></td></tr>
+            <tr id="626" codeLigne="485000", an_pk_debut="505+129" an_pk_fin="558+183" id_typ_urgence="R0" id_typ_specalite="OT" id_programme="Renouvellement Ouvrages d&#39;Art" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="Op&eacute;. voie cour. lignes 7 &agrave; 9 AV" id_ty_capacite="" id_typ_fin="" reference_fiche="" symbol="4"><td>626</td><td>Remblai du Moulin de l&#39;Isle du km 514,882 au 515,100</td><td>01/01/2016</td><td><button id = "b626" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src ="images/Btn-Petit_CarteTravaux.png"></button></td><td><button id="t626" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src = "images/Btn-Petit_TrainsImpactes.png"></button></td></tr>
+            <tr id="1151" codeLigne="515000", an_pk_debut="235+720" an_pk_fin="494+005" id_typ_urgence="U2" id_typ_specalite="S&eacute;curit&eacute;" id_programme="Am&eacute;lioration de la s&eacute;curit&eacute; aux passages &agrave; niveau" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="" id_ty_capacite="" id_typ_fin="" reference_fiche="" symbol="2"><td>1151</td><td>S&eacute;curisation par ajout d&#39;un feu routier - PN SAL 2</td><td>01/01/2015</td><td><button id = "b1151" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src ="images/Btn-Petit_CarteTravaux.png"></button></td><td><button id="t1151" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src = "images/Btn-Petit_TrainsImpactes.png"></button></td></tr>
+            <tr id="1671" codeLigne="525000", an_pk_debut="0-022" an_pk_fin="245+711" id_typ_urgence="R0" id_typ_specalite="S&eacute;curit&eacute;" id_programme="Am&eacute;liorations diverses de la s&eacute;curit&eacute;" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="" id_ty_capacite="" id_typ_fin="" reference_fiche="" symbol="3"><td>1671</td><td>pose cl&ocirc;ture sur 300m du PK 37+160 au PK 37+600</td><td>01/01/2013</td><td><button id = "b1671" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src ="images/Btn-Petit_CarteTravaux.png"></button></td><td><button id="t1671" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src = "images/Btn-Petit_TrainsImpactes.png"></button></td></tr>
+            <tr id="1787" codeLigne="427000", an_pk_debut="0+410" an_pk_fin="24+300" id_typ_urgence="U2" id_typ_specalite="Voie" id_programme="Renouvellement Voie" id_dir_rff="Bretagne Pays-de la-Loire" id_ss_programme="1" id_ty_capacite="Impact faible" id_typ_fin="1" reference_fiche="FEM-1787" symbol="3"><td>1787</td><td>Ligne Voie 1 </td><td>01/01/2022</td><td><button id = "b1787" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, false);"><img src ="images/Btn-Petit_CarteTravaux.png"></button></td><td><button id="t1787" data-toggle="modal" data-target="#popup" onclick="showOnMap(this.id, true);"><img src = "images/Btn-Petit_TrainsImpactes.png"></button></td></tr>
+
+        </table>
+        <div style="float:right">
+            <p id="all" data-toggle="modal" data-target="#popup" onclick="showAllOnMap();" class="underline">Afficher tout</p>
+        </div>
+        <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="titrePopUp" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="modalTitle"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-9"><div id="map"></div></div>
+                                <div class="col-md-3"><p id="textTitle"></p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    </div>
+</div>
+</body>
+<script src="http://js.arcgis.com/3.13/"></script>
+<script src="/javascripts/jquery-1.10.2.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<!--JS utiles à la gestion-->
+<script src="/javascripts/travaux.js"></script>
+<script src="/javascripts/maps.js"></script>
+<script src="/javascripts/works.js"></script>
+<script src="/javascripts/graphics.js"></script>
+<script>
+    $('#popup').on('hidden.bs.modal', function () {
+        cleanInterval();
+    })
+</script>
+</html>
